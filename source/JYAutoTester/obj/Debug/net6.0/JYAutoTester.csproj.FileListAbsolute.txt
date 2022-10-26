@@ -1,0 +1,12 @@
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\bin\Debug\net6.0\JYAutoTester.deps.json
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\bin\Debug\net6.0\JYAutoTester.dll
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\bin\Debug\net6.0\JYAutoTester.pdb
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.csproj.AssemblyReference.cache
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.AssemblyInfoInputs.cache
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.AssemblyInfo.cs
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.csproj.CoreCompileInputs.cache
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.dll
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\refint\JYAutoTester.dll
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\JYAutoTester.pdb
+C:\Users\JYTW\source\repos\JYTEKTaiwan\JYAutoTester\source\JYAutoTester\obj\Debug\net6.0\ref\JYAutoTester.dll
