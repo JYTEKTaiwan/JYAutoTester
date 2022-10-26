@@ -2,6 +2,8 @@ using JYAutoTesterDEMO.modules;
 using MATSys.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using System.Linq;
 
 namespace JYAutoTesterDEMO
 {
@@ -36,16 +38,19 @@ namespace JYAutoTesterDEMO
                 {
                     Invoke(new Action(() => textBox1.Text += $"Done...{result}\r\n")); ;
                 };
-            (handle.Modules["TestReporter"] as TestReporter).OnSummaryUpdated += (pass, fail) => 
+            (handle.Modules["TestReporter"]).OnDataReady += (e) => 
             {
-                Invoke(new Action(() => 
+                var param = JsonConvert.DeserializeObject<uint[]>(e);
+                Invoke(new Action(() =>
                 {
-                    numericUpDown_pass.Value = pass;
-                    numericUpDown_fail.Value = fail;
-                    numericUpDown_total.Value = pass+fail;
+                    numericUpDown_pass.Value = param[0];
+                    numericUpDown_fail.Value = param[2];
+                    numericUpDown_total.Value = param[0] + param[2];
 
                 }));
-            };
+            }; 
+                
+            
             host.RunAsync();
             button1.Enabled = true;
             button2.Enabled = false;

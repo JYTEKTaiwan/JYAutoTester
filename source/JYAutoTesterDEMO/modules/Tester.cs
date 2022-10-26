@@ -31,7 +31,8 @@ namespace JYAutoTesterDEMO.modules
             var num = Random.Shared.NextDouble();
             var bin = num > highLimit ? TestReporter.Bin.Bin1: TestReporter.Bin.Pass;
 
-            (LocalPeers["TestReporter"] as TestReporter).AddNewTestResult("MeasureVoltage",bin,num,"");
+            var cmd = CommandBase.Create("AddNewTestResult", "MeasureVoltage", bin, num, "");
+            LocalPeers["TestReporter"].Execute(cmd);
             return num;
         }
 
@@ -41,8 +42,8 @@ namespace JYAutoTesterDEMO.modules
 
             var num = Random.Shared.NextDouble();
             var bin = num < lowLimit ? TestReporter.Bin.Bin2: TestReporter.Bin.Pass;
-
-            (LocalPeers["TestReporter"] as TestReporter).AddNewTestResult("MeasureCurrent",bin,num,"");
+            var cmd = CommandBase.Create("AddNewTestResult", "MeasureCurrent", bin, num, "");
+            LocalPeers["TestReporter"].Execute(cmd);
             return num;;
         }
 

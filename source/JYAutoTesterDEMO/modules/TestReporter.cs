@@ -20,8 +20,6 @@ namespace JYAutoTesterDEMO.modules
         private string testLogPath;
         private string summaryLogPath;
 
-        public delegate void SummaryUpdated(uint pass, uint faild);
-        public event SummaryUpdated OnSummaryUpdated;
         public TestReporter(object? configuration, ITransceiver? transceiver, INotifier? notifier, IRecorder? recorder, string aliasName = "") : base(configuration, transceiver, notifier, recorder, aliasName)
         {
 
@@ -34,6 +32,7 @@ namespace JYAutoTesterDEMO.modules
             {
                 UpdateCount(bin);
                 sw.WriteLine($"{name},{bin},{System.Text.Json.JsonSerializer.Serialize(value)},{msg}");
+                Base.Notifier.Publish(new uint[] { passedCnt,skippedCnt,bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt});
                 return "";
             }
             catch (Exception ex)
@@ -70,7 +69,6 @@ namespace JYAutoTesterDEMO.modules
             }
 
             File.WriteAllText(summaryLogPath, $"Total:{passedCnt + bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt}, Passed: {passedCnt}, Failed: {bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt}, Skipped: {skippedCnt}, Bin1: {bin1Cnt}, Bin2: {bin1Cnt}, Bin3: {bin3Cnt}, Bin4: {bin4Cnt}");
-            OnSummaryUpdated?.Invoke(passedCnt, bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt);
         }
 
         [MATSysCommand]
