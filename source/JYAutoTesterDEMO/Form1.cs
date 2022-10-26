@@ -49,6 +49,15 @@ namespace JYAutoTesterDEMO
             host.RunAsync();
             button1.Enabled = true;
             button2.Enabled = false;
+            HideArrows(numericUpDown_fail);
+            HideArrows(numericUpDown_pass);
+            HideArrows(numericUpDown_total);
+        }
+        private void HideArrows(NumericUpDown ctrl)
+        {
+            ctrl.Controls[0].Visible = false;
+            ctrl.BorderStyle = BorderStyle.None;
+            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
