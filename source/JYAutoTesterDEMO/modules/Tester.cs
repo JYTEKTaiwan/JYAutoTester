@@ -26,24 +26,26 @@ namespace JYAutoTesterDEMO.modules
         }
 
         [MATSysCommand]
-        public double MeasureVoltage()
+        public double MeasureVoltage(double highLimit)
         {
             var num = Random.Shared.NextDouble();
-            var bin = num > 0.5?TestReporter.Bin.Bin1: TestReporter.Bin.Pass;
+            var bin = num > highLimit ? TestReporter.Bin.Bin1: TestReporter.Bin.Pass;
 
             (LocalPeers["TestReporter"] as TestReporter).AddNewTestResult("MeasureVoltage",bin,num,"");
             return num;
         }
 
         [MATSysCommand]
-        public double MeasureCurrent()
+        public double MeasureCurrent(double lowLimit)
         {
+
             var num = Random.Shared.NextDouble();
-            var bin = num > 0.5?TestReporter.Bin.Bin2: TestReporter.Bin.Pass;
+            var bin = num < lowLimit ? TestReporter.Bin.Bin2: TestReporter.Bin.Pass;
 
             (LocalPeers["TestReporter"] as TestReporter).AddNewTestResult("MeasureCurrent",bin,num,"");
             return num;;
         }
+
 
 
     }

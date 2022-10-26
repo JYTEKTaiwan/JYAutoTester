@@ -22,7 +22,7 @@
           }
         }
       },
-      "MATSys/1.3.0": {
+      "MATSys/1.3.3": {
         "dependencies": {
           "CsvHelper": "29.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
@@ -36,8 +36,16 @@
         },
         "runtime": {
           "lib/net6.0/MATSys.dll": {
-            "assemblyVersion": "1.3.0.0",
-            "fileVersion": "1.3.0.0"
+            "assemblyVersion": "1.3.3.0",
+            "fileVersion": "1.3.3.0"
+          }
+        }
+      },
+      "MATSys.Configurator.Winform/1.3.2": {
+        "runtime": {
+          "lib/net6.0-windows7.0/MATSys.Configurator.Winform.dll": {
+            "assemblyVersion": "1.3.2.0",
+            "fileVersion": "1.3.2.0"
           }
         }
       },
@@ -802,12 +810,19 @@
       "path": "csvhelper/29.0.0",
       "hashPath": "csvhelper.29.0.0.nupkg.sha512"
     },
-    "MATSys/1.3.0": {
+    "MATSys/1.3.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-K2ufnFc0TChjlczrf3Zku00W9TNTzWG+az2Fc21LAE2Z8R4e/1evBQ18ylj9ETcLatCqH6iB0xyRovYHQwmUjQ==",
-      "path": "matsys/1.3.0",
-      "hashPath": "matsys.1.3.0.nupkg.sha512"
+      "sha512": "sha512-BXwZ95uERlZUbGxGRyAqJ4ECr7x8Pr44+mYCMvo3mCvbl7UbQO8gXuNUZFCr2nnwZWpC8lDI7mvy7IYoqkaX4w==",
+      "path": "matsys/1.3.3",
+      "hashPath": "matsys.1.3.3.nupkg.sha512"
+    },
+    "MATSys.Configurator.Winform/1.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yWhT4TZ3atpCM/iUUcBkR1x5F4k8jZ0VLYmM+tztxP/vKLKr3c+E/Mir/hUZASs/Js+mcTlYRwAnU2jMiE1Y/w==",
+      "path": "matsys.configurator.winform/1.3.2",
+      "hashPath": "matsys.configurator.winform.1.3.2.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/5.0.0": {
       "type": "package",

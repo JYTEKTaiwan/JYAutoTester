@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MATSys" Version="1.3.2" />
+    <PackageReference Include="MATSys" Version="1.3.3" />
     <PackageReference Include="MATSys.Configurator.Winform" Version="1.3.2" />
   </ItemGroup>
 
