@@ -9,12 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MATSys" Version="1.3.3" />
+    <PackageReference Include="MATSys" Version="1.3.4" />
     <PackageReference Include="MATSys.Configurator.Winform" Version="1.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\main.ats">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\setup.ats">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\teardown.ats">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
