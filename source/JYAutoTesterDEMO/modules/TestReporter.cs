@@ -95,12 +95,12 @@ namespace JYAutoTesterDEMO.modules
         }
         public enum Bin
         {
-            Pass,
-            Skip,
-            Bin1,
-            Bin2,
-            Bin3,
-            Bin4,
+            Pass=0,
+            Skip=-1,
+            Bin1=1,
+            Bin2=2,
+            Bin3=3,
+            Bin4=4,
         }
 
     }

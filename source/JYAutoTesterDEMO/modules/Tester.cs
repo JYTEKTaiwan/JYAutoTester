@@ -26,25 +26,51 @@ namespace JYAutoTesterDEMO.modules
         }
 
         [MATSysCommand]
-        public double MeasureVoltage(double highLimit)
+        public TestItemResult MeasureVoltage(double highLimit)
         {
-            var num = Random.Shared.NextDouble();
-            var bin = num > highLimit ? TestReporter.Bin.Bin1: TestReporter.Bin.Pass;
+            Thread.Sleep(200);
 
+            var num = Random.Shared.NextDouble();
+            int bin = -1;
+            Classification cat;
+            if (num > highLimit)
+            {
+                bin = 1;
+                cat = Classification.Fail;
+            }
+            else
+            {
+                bin = 0;
+                cat = Classification.Pass;
+            }
             var cmd = CommandBase.Create("AddNewTestResult", "MeasureVoltage", bin, num, "");
             LocalPeers["TestReporter"].Execute(cmd);
-            return num;
+            return new TestItemResult(cat, bin, num, null);
+
         }
 
         [MATSysCommand]
-        public double MeasureCurrent(double lowLimit)
+        public TestItemResult MeasureCurrent(double lowLimit)
         {
+            Thread.Sleep(200);
 
             var num = Random.Shared.NextDouble();
-            var bin = num < lowLimit ? TestReporter.Bin.Bin2: TestReporter.Bin.Pass;
+            int bin = -1;
+            Classification cat;
+            if (num < lowLimit)
+            {
+                bin = 2;
+                cat = Classification.Fail;
+            }
+            else
+            {
+                bin = 0;
+                cat = Classification.Pass;
+            }
+
             var cmd = CommandBase.Create("AddNewTestResult", "MeasureCurrent", bin, num, "");
             LocalPeers["TestReporter"].Execute(cmd);
-            return num;;
+            return new TestItemResult(cat, bin, num, null);
         }
 
 

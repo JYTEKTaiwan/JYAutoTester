@@ -1,6 +1,6 @@
 ﻿namespace JYAutoTesterDEMO
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.numericUpDown_pass = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_fail = new System.Windows.Forms.NumericUpDown();
@@ -39,10 +38,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Module = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Command = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Parameter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_fail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_total)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -55,17 +63,6 @@
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Location = new System.Drawing.Point(0, 183);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(427, 91);
-            this.textBox1.TabIndex = 1;
             // 
             // button2
             // 
@@ -190,11 +187,97 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "Iteration";
             // 
-            // Form1
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Category,
+            this.Module,
+            this.Command,
+            this.Parameter,
+            this.Status,
+            this.Result});
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgv.Location = new System.Drawing.Point(0, 221);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowTemplate.Height = 25;
+            this.dgv.Size = new System.Drawing.Size(654, 244);
+            this.dgv.TabIndex = 6;
+            // 
+            // ID
+            // 
+            this.ID.FillWeight = 65F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Visible = false;
+            this.ID.Width = 65;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            this.Category.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Category.Width = 61;
+            // 
+            // Module
+            // 
+            this.Module.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Module.HeaderText = "Module";
+            this.Module.Name = "Module";
+            this.Module.ReadOnly = true;
+            this.Module.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Module.Width = 54;
+            // 
+            // Command
+            // 
+            this.Command.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Command.HeaderText = "Command";
+            this.Command.Name = "Command";
+            this.Command.ReadOnly = true;
+            this.Command.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Command.Width = 70;
+            // 
+            // Parameter
+            // 
+            this.Parameter.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Parameter.HeaderText = "Parameter";
+            this.Parameter.Name = "Parameter";
+            this.Parameter.ReadOnly = true;
+            this.Parameter.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Parameter.Width = 67;
+            // 
+            // Status
+            // 
+            this.Status.FillWeight = 65F;
+            this.Status.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 65;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 65;
+            // 
+            // Result
+            // 
+            this.Result.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Result.HeaderText = "Result";
+            this.Result.Name = "Result";
+            this.Result.ReadOnly = true;
+            this.Result.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 274);
+            this.ClientSize = new System.Drawing.Size(654, 465);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label3);
@@ -203,11 +286,10 @@
             this.Controls.Add(this.numericUpDown_fail);
             this.Controls.Add(this.numericUpDown_total);
             this.Controls.Add(this.numericUpDown_pass);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JYAutoTesterDEMO";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -216,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_fail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_total)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,7 +307,6 @@
         #endregion
 
         private Button button1;
-        private TextBox textBox1;
         private Button button2;
         private NumericUpDown numericUpDown_pass;
         private NumericUpDown numericUpDown_fail;
@@ -234,5 +316,13 @@
         private Label label3;
         private NumericUpDown numericUpDown1;
         private Label label4;
+        private DataGridView dgv;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn Category;
+        private DataGridViewTextBoxColumn Module;
+        private DataGridViewTextBoxColumn Command;
+        private DataGridViewTextBoxColumn Parameter;
+        private DataGridViewButtonColumn Status;
+        private DataGridViewTextBoxColumn Result;
     }
 }

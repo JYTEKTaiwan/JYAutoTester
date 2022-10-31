@@ -24,7 +24,7 @@ namespace JYAutoTesterDEMO.modules
         [MATSysCommand]
         public void Moving()
         {
-            Thread.Sleep(100);
+            Thread.Sleep(200);
         }
     }
 }
