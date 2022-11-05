@@ -3,8 +3,10 @@ using MATSys;
 using MATSys.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 namespace JYAutoTesterDEMO
 {
@@ -17,6 +19,15 @@ namespace JYAutoTesterDEMO
             InitializeComponent();
         }
 
+        internal class TestClass
+        {
+            public Test NUM { get; set; }
+        }
+        internal enum Test
+        {
+            A,
+            B,
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             handle.RunTest((int)numericUpDown1.Value);
@@ -29,7 +40,7 @@ namespace JYAutoTesterDEMO
             host = Host.CreateDefaultBuilder().UseMATSys().
             Build();
             handle = host.Services.GetMATSysHandle();
-            handle.OnReadyToExecute += (item) =>
+            handle.BeforeTestItem += (item) =>
             {
                 Invoke(new Action(() =>
                 {
@@ -38,7 +49,7 @@ namespace JYAutoTesterDEMO
                     row.Selected = true;
                 }));
             };
-            handle.OnExecuteComplete += (item, result) =>
+            handle.AfterTestItem += (item, result) =>
                 {
                     Invoke(new Action(() =>
                     {
@@ -53,18 +64,18 @@ namespace JYAutoTesterDEMO
                         }
                         else
                         {
-                            var res = JsonConvert.DeserializeObject<TestItemResult>(result);
+                            var res = JsonSerializer.Deserialize<TestItemResult>(result);
                             cell.Value = res.Result;
 
                             switch (res.Result)
                             {
-                                case Classification.Pass:
+                                case TestResultType.Pass:
                                     cell.Style.BackColor = Color.Green;
                                     break;
-                                case Classification.Fail:
+                                case TestResultType.Fail:
                                     cell.Style.BackColor = Color.Red;
                                     break;
-                                case Classification.Skip:
+                                case TestResultType.Skip:
                                     cell.Style.BackColor = Color.White;
                                     break;
                                 default:
@@ -78,7 +89,7 @@ namespace JYAutoTesterDEMO
                 };
             (handle.Modules["TestReporter"]).OnDataReady += (e) =>
                 {
-                    var param = JsonConvert.DeserializeObject<uint[]>(e);
+                    var param = JsonSerializer.Deserialize<uint[]>(e);
                     Invoke(new Action(() =>
                         {
                         numericUpDown_pass.Value = param[0];

@@ -17,13 +17,6 @@ namespace JYAutoTesterDEMO.modules
         {
         }
 
-        public override void Load(IConfigurationSection section)
-        {
-        }
-
-        public override void Load(object configuration)
-        {
-        }
 
         [MATSysCommand]
         public TestItemResult MeasureVoltage(double highLimit)
@@ -32,20 +25,20 @@ namespace JYAutoTesterDEMO.modules
 
             var num = Random.Shared.NextDouble();
             int bin = -1;
-            Classification cat;
+            TestResultType cat;
             if (num > highLimit)
             {
                 bin = 1;
-                cat = Classification.Fail;
+                cat = TestResultType.Fail;
             }
             else
             {
                 bin = 0;
-                cat = Classification.Pass;
+                cat = TestResultType.Pass;
             }
             var cmd = CommandBase.Create("AddNewTestResult", "MeasureVoltage", bin, num, "");
             LocalPeers["TestReporter"].Execute(cmd);
-            return new TestItemResult(cat, bin, num, null);
+            return TestItemResult.Create(cat, bin, num);
 
         }
 
@@ -56,24 +49,22 @@ namespace JYAutoTesterDEMO.modules
 
             var num = Random.Shared.NextDouble();
             int bin = -1;
-            Classification cat;
+            TestResultType cat;
             if (num < lowLimit)
             {
                 bin = 2;
-                cat = Classification.Fail;
+                cat = TestResultType.Fail;
             }
             else
             {
                 bin = 0;
-                cat = Classification.Pass;
+                cat = TestResultType.Pass;
             }
 
             var cmd = CommandBase.Create("AddNewTestResult", "MeasureCurrent", bin, num, "");
             LocalPeers["TestReporter"].Execute(cmd);
-            return new TestItemResult(cat, bin, num, null);
+            return TestItemResult.Create(cat, bin, num);
         }
-
-
 
     }
 }

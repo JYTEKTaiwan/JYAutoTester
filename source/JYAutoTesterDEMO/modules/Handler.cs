@@ -11,15 +11,6 @@ namespace JYAutoTesterDEMO.modules
         {
         }
 
-        public override void Load(IConfigurationSection section)
-        {
-            
-        }
-
-        public override void Load(object configuration)
-        {
-            
-        }
 
         [MATSysCommand]
         public void Moving()
