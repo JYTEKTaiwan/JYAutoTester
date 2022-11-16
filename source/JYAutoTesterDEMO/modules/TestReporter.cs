@@ -17,10 +17,17 @@ namespace JYAutoTesterDEMO.modules
         private StreamWriter sw;
         private string testLogPath;
         private string summaryLogPath;
-
+        private TestReporterConfiguration _config;
         public TestReporter(object? configuration, ITransceiver? transceiver, INotifier? notifier, IRecorder? recorder, string aliasName = "") : base(configuration, transceiver, notifier, recorder, aliasName)
         {
 
+        }
+        public override void Load(IConfigurationSection section)
+        {
+            if (section.Exists())
+            {
+                _config = section.Get<TestReporterConfiguration>();
+            }            
         }
 
         [MATSysCommand]
@@ -38,6 +45,30 @@ namespace JYAutoTesterDEMO.modules
                 return ex.Message;
             }
         }
+
+
+        [MATSysCommand]
+        public void StartLog()
+        {
+            passedCnt= skippedCnt= bin1Cnt= bin2Cnt= bin3Cnt= bin4Cnt = 0;
+
+            var logFolder = string.IsNullOrEmpty(_config.Logfolder)?@".\log": _config.Logfolder;
+            if (!Directory.Exists(logFolder))
+            {
+                Directory.CreateDirectory(logFolder);
+            }
+            var filename = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            testLogPath = Path.Combine(logFolder, $"{filename}.testlog");
+            summaryLogPath = Path.Combine(logFolder, $"{filename}.summary");
+            sw = new StreamWriter(testLogPath);
+        }
+        [MATSysCommand]
+        public void StopLog()
+        {
+            sw.Flush();
+            sw.Close();
+        }
+
 
         private void UpdateCount(Bin bin)
         {
@@ -69,28 +100,7 @@ namespace JYAutoTesterDEMO.modules
             File.WriteAllText(summaryLogPath, $"Total:{passedCnt + bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt}, Passed: {passedCnt}, Failed: {bin1Cnt + bin2Cnt + bin3Cnt + bin4Cnt}, Skipped: {skippedCnt}, Bin1: {bin1Cnt}, Bin2: {bin1Cnt}, Bin3: {bin3Cnt}, Bin4: {bin4Cnt}");
         }
 
-        [MATSysCommand]
-        public void StartLog()
-        {
-            passedCnt= skippedCnt= bin1Cnt= bin2Cnt= bin3Cnt= bin4Cnt = 0;
 
-            var binFolder = Path.GetDirectoryName(Application.ExecutablePath);
-            var logFolder = Path.Combine(binFolder, "log");
-            if (!Directory.Exists(logFolder))
-            {
-                Directory.CreateDirectory(logFolder);
-            }
-            var filename = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            testLogPath = Path.Combine(logFolder, $"{filename}.testlog");
-            summaryLogPath = Path.Combine(logFolder, $"{filename}.summary");
-            sw = new StreamWriter(testLogPath);
-        }
-        [MATSysCommand]
-        public void StopLog()
-        {
-            sw.Flush();
-            sw.Close();
-        }
         public enum Bin
         {
             Pass=0,
@@ -101,6 +111,11 @@ namespace JYAutoTesterDEMO.modules
             Bin4=4,
         }
 
+    }
+
+    internal class TestReporterConfiguration
+    {
+        public string Logfolder { get; set; } = @".\log";
     }
     public struct ResultData
     {

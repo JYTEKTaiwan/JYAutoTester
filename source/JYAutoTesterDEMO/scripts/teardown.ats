@@ -1,1 +1,3 @@
-﻿TestReporter:StopLog=
+﻿[
+  { "Executer": { "TestReporter": { "StopLog": [] } } }
+]

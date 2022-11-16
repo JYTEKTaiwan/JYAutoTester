@@ -1,1 +1,5 @@
-﻿TestReporter:StartLog=
+﻿[
+  {
+    "Executer": { "TestReporter": { "StartLog": [] } }
+  }
+]

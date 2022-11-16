@@ -5,6 +5,14 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JYAutoTesterDEMO", "source\JYAutoTesterDEMO\JYAutoTesterDEMO.csproj", "{A8CD7767-361C-4CFE-AF9F-D2436697433C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JYAutoTester DEMO", "JYAutoTester DEMO\JYAutoTester DEMO.vdproj", "{99A1F501-CA42-4582-99B2-F9CDA9808BB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextRecorder", "TextRecorder\TextRecorder.csproj", "{4C7D5020-306A-49D1-AB6E-820266C66CD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDevice", "ExternalDevice\ExternalDevice.csproj", "{7CB3FDD6-25A9-4C27-89CF-70C816F2CBD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MATSys", "..\MATSys\MATSys\MATSys.csproj", "{F1BB83BE-D47B-42C8-92D5-B10D3963DABD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,20 @@ Global
 		{A8CD7767-361C-4CFE-AF9F-D2436697433C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8CD7767-361C-4CFE-AF9F-D2436697433C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8CD7767-361C-4CFE-AF9F-D2436697433C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A1F501-CA42-4582-99B2-F9CDA9808BB8}.Debug|Any CPU.ActiveCfg = Debug
+		{99A1F501-CA42-4582-99B2-F9CDA9808BB8}.Release|Any CPU.ActiveCfg = Release
+		{4C7D5020-306A-49D1-AB6E-820266C66CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7D5020-306A-49D1-AB6E-820266C66CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7D5020-306A-49D1-AB6E-820266C66CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7D5020-306A-49D1-AB6E-820266C66CD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB3FDD6-25A9-4C27-89CF-70C816F2CBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB3FDD6-25A9-4C27-89CF-70C816F2CBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB3FDD6-25A9-4C27-89CF-70C816F2CBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB3FDD6-25A9-4C27-89CF-70C816F2CBD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BB83BE-D47B-42C8-92D5-B10D3963DABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BB83BE-D47B-42C8-92D5-B10D3963DABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BB83BE-D47B-42C8-92D5-B10D3963DABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BB83BE-D47B-42C8-92D5-B10D3963DABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

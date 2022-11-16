@@ -19,15 +19,6 @@ namespace JYAutoTesterDEMO
             InitializeComponent();
         }
 
-        internal class TestClass
-        {
-            public Test NUM { get; set; }
-        }
-        internal enum Test
-        {
-            A,
-            B,
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             handle.RunTest((int)numericUpDown1.Value);
@@ -39,6 +30,7 @@ namespace JYAutoTesterDEMO
         {
             host = Host.CreateDefaultBuilder().UseMATSys().
             Build();
+
             handle = host.Services.GetMATSysHandle();
             handle.BeforeTestItem += (item) =>
             {
@@ -92,15 +84,15 @@ namespace JYAutoTesterDEMO
                     var param = JsonSerializer.Deserialize<uint[]>(e);
                     Invoke(new Action(() =>
                         {
-                        numericUpDown_pass.Value = param[0];
-                        numericUpDown_fail.Value = param[2];
-                        numericUpDown_total.Value = param[0] + param[2];
+                            numericUpDown_pass.Value = param[0];
+                            numericUpDown_fail.Value = param[2];
+                            numericUpDown_total.Value = param[0] + param[2];
 
-                    }));
+                        }));
                 };
-
-
             host.RunAsync();
+
+
             button1.Enabled = true;
             button2.Enabled = false;
             HideArrows(numericUpDown_fail);
@@ -116,36 +108,41 @@ namespace JYAutoTesterDEMO
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             foreach (var item in handle.SetupItems)
             {
+                var cmd=JsonDocument.Parse(item.Command).RootElement.EnumerateObject().First();
                 dgv.Rows.Add(
                     item.ID,
                     "Setup",
                     item.ModuleName,
-                    item.Command.Split("=")[0],
-                    item.Command.Split('=')[1],
+                    cmd.Name,
+                    cmd.Value,
                     "Idle",
                     ""
                     );
             }
             foreach (var item in handle.TestItems)
             {
+                var cmd = JsonDocument.Parse(item.Command).RootElement.EnumerateObject().First();
+
                 dgv.Rows.Add(
                     item.ID,
                     "TestItem",
                     item.ModuleName,
-                    item.Command.Split("=")[0],
-                    item.Command.Split('=')[1],
+                    cmd.Name,
+                    cmd.Value,
                     "Idle",
                     ""
                     );
             }
             foreach (var item in handle.TeardownItems)
             {
+                var cmd = JsonDocument.Parse(item.Command).RootElement.EnumerateObject().First();
+
                 dgv.Rows.Add(
                     item.ID,
                     "Teardown",
                     item.ModuleName,
-                    item.Command.Split("=")[0],
-                    item.Command.Split('=')[1],
+                    cmd.Name,
+                    cmd.Value,
                     "Idle",
                     ""
                     );
