@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "JYAutoTester (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "JYAutoTester (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

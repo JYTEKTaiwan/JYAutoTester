@@ -1,0 +1,64 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+<!-- Licensed under the MIT License. See LICENSE in the project root for license information. -->
+<Page
+    x:Class="JYAutoTester.Views.MATSysPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JYAutoTester.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <ScrollViewer Padding="20,0,0,0" 
+                  HorizontalScrollMode="Enabled" 
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollMode="Enabled"
+                  VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Padding="20,20,0,0" FontSize="28">MATSys Configuration</TextBlock>
+            <TextBlock Padding="36,30,0,0" FontSize="22">Assemblies Configuration</TextBlock>
+            <RichTextBlock Padding="48,10,0,0">
+                <Paragraph>Click the "AddNew" button to copy the assembly and its dependent assemblies into .\modules  folder</Paragraph>
+            </RichTextBlock>
+            <TextBlock Padding="48,10,0,0" FontSize="20">External Assemblies Information</TextBlock>
+            <Grid x:Name="grd" Background="AliceBlue" >
+                <ListBox Background="LightGray" Grid.Row="0" Grid.Column="1"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+                <ListBox Background="LightGray"></ListBox>
+
+            </Grid>
+            
+
+            <StackPanel Padding="48,10,48,0" Orientation="Vertical" Spacing="10">
+                <ComboBox x:Name="cBox_extRefCatSelector" Width="200" Header="Category"/>
+                <ListBox x:Name="lBox_extRefPathViewer" Background="LightGray">
+                </ListBox>
+                <Button x:Name="btn_newExtRef" VerticalAlignment="Top">Add New...</Button>
+            </StackPanel>
+            <Line    X1="36" Y1="20" X2="1000" Y2="20"    Stroke="Black"   StrokeThickness="2"/>
+            <TextBlock Padding="36,30,0,0" FontSize="22">Modules Configuration</TextBlock>
+            <RichTextBlock Padding="48,10,0,0">
+                <Paragraph>I am a RichTextBlock.</Paragraph>
+            </RichTextBlock>
+            <Line    X1="36" Y1="20" X2="1000" Y2="20"    Stroke="Black"   StrokeThickness="2"/>            
+            <TextBlock Padding="36,30,0,0" FontSize="22">Scripts</TextBlock>
+            <RichTextBlock Padding="48,10,0,0">
+                <Paragraph>I am a RichTextBlock.</Paragraph>
+            </RichTextBlock>
+            <Line X1="36" Y1="20" X2="1000" Y2="20" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock Padding="36,30,0,0" FontSize="22">Log Setting (NLog)</TextBlock>
+            <RichTextBlock Padding="48,10,0,0">
+                <Paragraph>I am a RichTextBlock.</Paragraph>
+            </RichTextBlock>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Page>

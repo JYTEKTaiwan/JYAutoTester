@@ -46,6 +46,7 @@
             this.Parameter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Result = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_pass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_fail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_total)).BeginInit();
@@ -200,12 +201,12 @@
             this.Parameter,
             this.Status,
             this.Result});
-            this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv.Location = new System.Drawing.Point(0, 221);
+            this.dgv.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dgv.Location = new System.Drawing.Point(417, 0);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowTemplate.Height = 25;
-            this.dgv.Size = new System.Drawing.Size(654, 244);
+            this.dgv.Size = new System.Drawing.Size(421, 430);
             this.dgv.TabIndex = 6;
             // 
             // ID
@@ -272,11 +273,23 @@
             this.Result.ReadOnly = true;
             this.Result.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox1.Location = new System.Drawing.Point(0, 195);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(417, 235);
+            this.textBox1.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 465);
+            this.ClientSize = new System.Drawing.Size(838, 430);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDown1);
@@ -324,5 +337,6 @@
         private DataGridViewTextBoxColumn Parameter;
         private DataGridViewButtonColumn Status;
         private DataGridViewTextBoxColumn Result;
+        private TextBox textBox1;
     }
 }
