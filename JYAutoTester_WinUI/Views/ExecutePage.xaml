@@ -20,14 +20,15 @@
             <ColumnDefinition Width="196" ></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition x:Name="log_panel" Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <DataTemplate x:Key="RowDetailsTemplate">
                 <StackPanel>
-                    <Grid Margin="10,10" Padding="5" Background="LightYellow">
+                    <Grid Margin="5,10" Padding="5" Background="LightYellow">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -47,11 +48,17 @@
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>
-        <RelativePanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="2"            
+            FontSize="22"
+            HorizontalAlignment="Center"
+            Text="Test Panel"/>
+        <RelativePanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <Button 
                 Margin="5"
                 x:Name="btn_start" 
-                Width="144" 
+                Width="96" 
                 Height="32"
                 Click="btn_start_Click"
                 Content="START"
@@ -60,7 +67,7 @@
             <Button 
                 Margin="5"
                 x:Name="btn_stop" 
-                Width="144" 
+                Width="96" 
                 Height="32" 
                 Content="STOP"
                 RelativePanel.AlignBottomWithPanel="True"
@@ -69,7 +76,7 @@
             <Rectangle 
                 Margin="5"
                 Height="30"                
-                Width="144"
+                Width="108"
                 Fill="Green"
                 RelativePanel.RightOf="btn_start"
                 RelativePanel.AlignTopWithPanel="True"
@@ -77,7 +84,7 @@
             <TextBlock
                 Margin="5"
                 Height="30"                
-                Width="144"
+                Width="108"
                 x:DefaultBindMode="TwoWay"
                 Text="{x:Bind Path=ViewModel.PassCount}"
                 FontSize="20"       
@@ -89,7 +96,7 @@
             <Rectangle 
                 Margin="5"
                 Height="30"                
-                Width="144"
+                Width="108"
                 Fill="Red"
                 RelativePanel.RightOf="btn_stop"
                 RelativePanel.AlignBottomWithPanel="True"
@@ -97,7 +104,7 @@
             <TextBlock
                 Margin="5"
                 Height="30"                
-                Width="144"
+                Width="108"
                 x:DefaultBindMode="TwoWay"
                 Text="{x:Bind Path=ViewModel.FailCount}"
                 FontSize="20"       
@@ -108,50 +115,79 @@
                 />
 
         </RelativePanel>
-
         <controls:DataGrid 
             x:Name="datagrid" 
             x:DefaultBindMode="TwoWay" 
-            Grid.Row="1" 
-            Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
             SelectionMode="Single" 
             AllowDrop="False"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
             RowDetailsVisibilityMode="VisibleWhenSelected"                 
             GridLinesVisibility="Horizontal"
             AutoGenerateColumns="False"
             IsReadOnly="True"
             RowDetailsTemplate="{StaticResource RowDetailsTemplate}"
             BorderBrush="DarkBlue"
-            BorderThickness="1"  
-            Background="WhiteSmoke"
-            ItemsSource="{x:Bind Path=ViewModel.TestItems}"        
-            SelectionChanged="datagrid_SelectionChanged"
+            BorderThickness="1"              
+            Background="GhostWhite"
+            LoadingRowGroup="datagrid_LoadingRowGroup"
             >
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Binding="{Binding TestItemID}" Header="TestItem ID"></controls:DataGridTextColumn>
-                <controls:DataGridTextColumn Binding="{Binding Name}" Header="Name"></controls:DataGridTextColumn>
-                <controls:DataGridTextColumn Binding="{Binding Result}" Header="Result" FontWeight="ExtraBold">                </controls:DataGridTextColumn>
-                <controls:DataGridTextColumn Binding="{Binding Value}" Header="Value" FontStyle="Italic"></controls:DataGridTextColumn>
-                <controls:DataGridTextColumn Binding="{Binding Attributes}" Header="Attributes"></controls:DataGridTextColumn>
-
+                <controls:DataGridTextColumn Binding="{Binding TestItemID}" Header="TestItem ID"/>
+                <controls:DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                <controls:DataGridTextColumn Header="Result" FontWeight="Bold">
+                    <controls:DataGridTextColumn.CellStyle>
+                        <Style TargetType="controls:DataGridCell">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="controls:DataGridCell">
+                                        <TextBox 
+                                            Text="{Binding Result}"
+                                            TextAlignment="Center"
+                                            Background="{Binding ResultBrush}"
+                                            BorderBrush="{Binding ResultBrush}"
+                                            IsHitTestVisible="False"
+                                            >
+                                        </TextBox>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </controls:DataGridTextColumn.CellStyle>
+                </controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Binding="{Binding Value}" Header="Value" FontStyle="Italic"/>
+                <controls:DataGridTextColumn Binding="{Binding Attributes}" Header="Attributes"/>
             </controls:DataGrid.Columns>
+            <controls:DataGrid.RowGroupHeaderStyles>
+                <Style TargetType="controls:DataGridRowGroupHeader">
+                    <Setter Property="Foreground" Value="Brown"/>
+                </Style>
+            </controls:DataGrid.RowGroupHeaderStyles>
         </controls:DataGrid>
-        <TextBox 
+
+        <StackPanel 
+            Grid.Row="3" Grid.ColumnSpan="2" Spacing="5">
+            <CheckBox Checked="logPanel_checked" Unchecked="logPanel_unchecked">Show test messages</CheckBox>
+            <TextBox 
             x:Name="tBox_msg" 
             x:DefaultBindMode="TwoWay"
+            Height="90"
             Background="White"
-            Foreground="Gray"
-            Grid.Row="2" 
-            Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Foreground="Gray"             
             IsReadOnly="True" 
             AcceptsReturn="True"
+            FontSize="10"
             Text="{x:Bind Path=ViewModel.LogText}"
+            Visibility="Collapsed"
             TextChanged="tBox_msg_TextChanged"
-            >
+            />
 
-        </TextBox>
+
+
+
+        </StackPanel>
 
     </Grid>
 </Page>

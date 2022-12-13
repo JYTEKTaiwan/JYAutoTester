@@ -10,31 +10,112 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <RelativePanel.Resources>
-            <Style TargetType="Button">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Margin" Value="0,0,8,0" />
-            </Style>
-        </RelativePanel.Resources>
-        <Button x:Name="openFileButton" Click="OpenButton_Click" AutomationProperties.Name="Open file" ToolTipService.ToolTip="Open file">
-            <Button.Content>
-                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8E5;"/>
-            </Button.Content>
-        </Button>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock  Text="Script Editing Panel" FontSize="28" HorizontalAlignment="Center"/>
+        <RelativePanel x:Name="panel_editor" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <RelativePanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Margin" Value="0,0,8,0" />
+                </Style>
+            </RelativePanel.Resources>
+            <Button x:Name="btn_NewFile" Click="NewButton_Click" ToolTipService.ToolTip="Create New"
+            RelativePanel.AlignLeftWithPanel="True">
+                <Button.Content>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8F4;" ToolTipService.ToolTip="Creat New"/>
+                </Button.Content>
+            </Button>
 
-        <Button Click="SaveButton_Click" AutomationProperties.Name="Save file" ToolTipService.ToolTip="Save file"
-            RelativePanel.RightOf="openFileButton">
-            <Button.Content>
-                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74E;"/>
-            </Button.Content>
-        </Button>
+            <Button x:Name="btn_FileOpen" Click="OpenButton_Click" ToolTipService.ToolTip="Open File"
+                    RelativePanel.RightOf="btn_NewFile">
+                <Button.Content>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8E5;" ToolTipService.ToolTip="Open"/>
+                </Button.Content>
+            </Button>
 
-        <RichEditBox x:Name="editor" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollMode="Auto"  AutomationProperties.Name="Custom editor"
-                    RelativePanel.Below="openFileButton"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                     RelativePanel.AlignBottomWithPanel="True"></RichEditBox>
-    </RelativePanel>
+            <Button x:Name="btn_SaveFile" Click="SaveButton_Click" ToolTipService.ToolTip="Save File"
+                    IsEnabled="{x:Bind Path=ViewModel.IsFileOpened}"
+                    x:DefaultBindMode="TwoWay"
+            RelativePanel.RightOf="btn_FileOpen">
+                <Button.Content>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE792;"/>
+                </Button.Content>
+            </Button>
+            <TextBlock
+            x:DefaultBindMode="TwoWay"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            FontSize="20"
+            FontWeight="Bold"
+            ToolTipService.ToolTip="{x:Bind Path=ViewModel.FilePath}"
+            Text="{x:Bind Path=ViewModel.FileName}"/>
+            <RichEditBox
+            x:Name="editor" 
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollMode="Auto"            
+            IsSpellCheckEnabled="false"            
+            AcceptsReturn="True"                
+            RelativePanel.Below="btn_NewFile"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignBottomWithPanel="True"
+                     />
+        </RelativePanel>
+
+        <ScrollViewer x:Name="panel_manual" Grid.Row="2">
+            <StackPanel Padding="20" Spacing="5">
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="260"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="5">
+                        <RadioButtons x:Name="rbs_TestItem" Header="Test Item Type" SelectedIndex="-1" MaxColumns="2" HorizontalAlignment="Left" SelectionChanged="TestItemType_SelectionChanged">
+                            <x:String>Executer</x:String>
+                            <x:String>Script</x:String>
+                        </RadioButtons>
+                        <NumberBox x:Name="nBox_Repeat" Header="Repeat Count" Value="1"  HorizontalAlignment="Stretch"/>
+                        <Rectangle Height="20"></Rectangle>
+                        <Button Content="Preview" Width="100" Click="Preview_Click"/>
+                        <RichEditBox x:Name="item_preview" HorizontalAlignment="Stretch" Background="LightYellow"/>
+                    </StackPanel>
+                    <StackPanel x:Name="panel_script"
+                                Grid.Column="1" 
+                                Spacing="5"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Padding="5"
+                                Visibility="Collapsed">
+                        <TextBox x:Name="tBox_scriptPath" Header="Script file path" Width="250" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel x:Name="panel_executer"
+                                Grid.Column="1"  
+                                Spacing="2"
+                                BorderBrush="Black"
+                                BorderThickness="1"
+                                Padding="5"
+                                Visibility="Collapsed">
+                        <ComboBox x:Name="cBox_ModNames" Header="ModuleName" Width="250" ItemsSource="{x:Bind Path=ViewModel.ActiveModules}"/>
+                        <TextBox x:Name="tBox_MethodCmd" IsSpellCheckEnabled="False" Header="Command" Width="250" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="tBox_AnalyzeCmd" IsSpellCheckEnabled="False" Header="Analyzer Command (ignore if empty)" Width="250" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                        <RadioButtons x:Name="rbs_ReTest"  Header="Re-Test Mode"  MaxColumns="3" SelectedIndex="0" HorizontalAlignment="Left">
+                            <x:String>None</x:String>
+                            <x:String>Loop</x:String>
+                            <x:String>Retry</x:String>
+                        </RadioButtons>
+                        <NumberBox x:Name="nBox_iteration" Header="Iteration" Width="250" HorizontalAlignment="Left" Value="1"/>
+
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Grid>
+    
 </Page>

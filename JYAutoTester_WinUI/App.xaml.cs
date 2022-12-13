@@ -19,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.ViewManagement;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -31,6 +32,7 @@ namespace JYAutoTester
     /// </summary>
     public partial class App : Application
     {
+        public Window Window => m_window;
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>	  
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>JYAutoTester</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
@@ -14,12 +15,13 @@
 	  <ApplicationIcon>JYTek.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Dialogs\FileSavingDialog.xaml" />
     <None Remove="Test.xaml" />
     <None Remove="Views\EditPage.xaml" />
     <None Remove="Views\ExecutePage.xaml" />
-    <None Remove="Views\HomePage.xaml" />
     <None Remove="Views\MATSysPage.xaml" />
     <None Remove="Views\SettingPage.xaml" />
+    <None Remove="Views\WelcomePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageReference Include="H.OxyPlot.WinUI" Version="0.9.30" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.220902.1-preview1" />
@@ -56,6 +59,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\WelcomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Dialogs\FileSavingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <None Update="scripts\main.ats">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -65,9 +74,6 @@
     <None Update="scripts\teardown.ats">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Page Update="Views\HomePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Views\EditPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

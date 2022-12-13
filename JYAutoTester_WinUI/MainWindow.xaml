@@ -10,24 +10,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d">
     <NavigationView x:Name="nv" 
-                    PaneDisplayMode="Auto"
+                    PaneDisplayMode="LeftCompact"
                     IsBackButtonVisible="Collapsed"
                     IsSettingsVisible="True" 
-                    SelectionChanged="Navigate">
+                    SelectionChanged="Navigate" 
+                    >
         <NavigationView.MenuItems>
-            <NavigationViewItem Icon="Home" Content="Home" Tag="Views.HomePage"/>
-            <NavigationViewItem Icon="Edit" Content="Edit" Tag="Views.EditPage"/>
-            <!--<NavigationViewItem Icon="OpenWith" Content="MATSys" Tag="Views.MATSysPage"/>-->
-            <NavigationViewItem Icon="Bullets" Content="Execute" Tag="Views.ExecutePage"/>
+            <!--<NavigationViewItem Icon="Home" Content="Home" Tag="Views.HomePage"/>-->
+            <NavigationViewItem Icon="Play" Content="Execution" Tag="Views.ExecutePage"/>
+            <NavigationViewItem Icon="Edit" Content="Script Editing" Tag="Views.EditPage"/>
         </NavigationView.MenuItems>
         <NavigationView.FooterMenuItems>
             <!--<NavigationViewItem Icon="People" Content="Account" Tag="Views.AccountPage"/>-->
         </NavigationView.FooterMenuItems>
 
 
-        <Frame x:Name="contentFrame">
-            <Button>rrr</Button>
-        </Frame>
+        <Frame x:Name="contentFrame"/>
+
     </NavigationView>
     
 

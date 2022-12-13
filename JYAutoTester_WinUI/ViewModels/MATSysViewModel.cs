@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Permissions;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -127,7 +128,7 @@ namespace JYAutoTester.ViewModels
                     rowItem.Result = res.Result.ToString();
                     rowItem.Attributes = res.Attributes;
                     CurrentItem = rowItem;
-                    LogText += result.ToJsonString() + Environment.NewLine;
+                    LogText += $"[{res.Timestamp.ToString("yyyy/MM/dd HH:mm:ss.fff")}]{item.Executer.Value.CommandString.ToJsonString()}\t{res.Result}\t{res.Value}\t{result["Attributes"]?.ToJsonString()}"+Environment.NewLine;
                 });
             };
 
@@ -135,6 +136,13 @@ namespace JYAutoTester.ViewModels
 
         public void StartTest(int iteration = 1)
         {
+            foreach (var item in _binding)
+            {
+                item.Attributes = null;
+                item.Value = null;
+                item.Result = null;
+
+            }
             PassCount = 0;
             FailCount = 0;
             LogText = "";
@@ -317,7 +325,7 @@ namespace JYAutoTester.ViewModels
                     ResultBrush = new SolidColorBrush(Colors.Red);
                     break;
                 default:
-                    ResultBrush = new SolidColorBrush(Colors.Black);
+                    ResultBrush = new SolidColorBrush(Colors.Transparent);
                     break;
             }            
         }

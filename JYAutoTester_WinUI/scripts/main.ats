@@ -1,43 +1,41 @@
 ﻿[
   {
-    "Executer": { "Handler": { "Moving": [] } }
+    "Executer": { "Tester": { "SOT": [] } }
+  },
+  {
+    "Executer": { "Tester": { "CounterValue": [  ] } },
+    "Analyzer": { "SmallerThan": [ 2 ] },
+    "Repeat": 3
+  },
+  {
+    "Executer": { "Tester": { "Temperature": [] } }
   },
   {
     "Executer": { "Tester": { "MeasureVoltage": [ 0.8 ] } },
-    "Analyzer": { "SmallerThan": [ 1] },
-    "Loop": 10
+    "Analyzer": { "SmallerThan": [ 0.5 ] }  ,
+    "Loop": 5
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 0.4 ] } },
-    "Analyzer": { "SmallerThan": [ 0.3 ] },
-    "Retry": 5
+    "Executer": { "Tester": { "SignalToNoiseRatio": [] } },
+    "Analyzer": { "Between": [ -95, -92 ] }
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 0.5 ] } },
-    "Analyzer": { "SmallerThan": [ 0.3 ] }
+    "Executer": { "Tester": { "PowerInBand": [] } }
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 0.6 ] } },
-    "Analyzer": { "SmallerThan": [ 0.3 ] }
+    "Executer": { "Tester": { "MeasureCurrent": [ 5 ] } },
+    "Analyzer": { "LargerThan": [ 1 ] }
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 0.7 ] } },
-    "Analyzer": { "SmallerThan": [ 0.3 ] }
+    "Executer": { "Tester": { "PowerInBand": [] } },
+    "Analyzer": { "LargerThan": [ 0.2 ] },
+    "Retry": 3
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 8 ] } },
-    "Analyzer": { "LargerThan": [ 3 ] }
+    "Executer": { "Tester": { "SignalToNoiseRatio": [] } },
+    "Analyzer": { "Between": [ -99, -95 ] }
   },
   {
-    "Executer": { "Tester": { "MeasureVoltage": [ 7 ] } },
-    "Analyzer": { "LargerThan": [ 3 ] }
-  },
-  {
-    "Executer": { "Tester": { "MeasureVoltage": [ 6 ] } },
-    "Analyzer": { "LargerThan": [ 3 ] }
-  },
-  {
-    "Executer": { "Tester": { "MeasureVoltage": [ 5 ] } },
-    "Analyzer": { "LargerThan": [ 3 ] }
+    "Executer": { "Tester": { "EOT": [] } }
   }
 ]

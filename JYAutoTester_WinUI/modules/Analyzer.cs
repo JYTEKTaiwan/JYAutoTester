@@ -21,6 +21,12 @@ namespace JYAutoTesterDEMO
         {
             return JsonSerializer.Deserialize<double>(data.Value) < thredshold;
         }
+
+        public static bool Between(this AnalyzingData data, double low, double high)
+        {
+            var v = JsonSerializer.Deserialize<double>(data.Value);
+            return v > low && v < high;
+        }
     }
 
 

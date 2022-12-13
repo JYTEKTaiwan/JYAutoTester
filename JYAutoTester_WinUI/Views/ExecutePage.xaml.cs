@@ -2,37 +2,15 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using OxyPlot.Axes;
-using OxyPlot.Series;
-using OxyPlot;
-using Microsoft.Extensions.Hosting;
-using MATSys.Hosting;
-using System.Threading.Tasks;
-using System.Text.Json.Nodes;
-using Windows.System.RemoteSystems;
 using JYAutoTester.ViewModels;
-using System.Threading;
-using System.Text.Json;
-using MATSys.Hosting.Scripting;
-using CommunityToolkit.WinUI.UI.Controls.Primitives;
 using CommunityToolkit.WinUI.UI.Controls;
 using System.ComponentModel;
-using System.Drawing;
 using Microsoft.UI;
-using WinRT;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -51,13 +29,19 @@ namespace JYAutoTester.Views
         {
             this.InitializeComponent();
             this.ViewModel = new MATSysViewModel();
+
+            var view = new CollectionViewSource()
+            {
+                IsSourceGrouped = true,
+                Source = ViewModel.TestItems.GroupBy(x => x.Category)      ,
+            };
+            datagrid.ItemsSource = view.View;
+           
             TypeDescriptor.GetProperties(ViewModel)["CurrentItem"].AddValueChanged(ViewModel, CurrentItemChangedEvent);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
-
         }
 
 
@@ -89,19 +73,17 @@ namespace JYAutoTester.Views
         {
             var currentRow = (sender as MATSysViewModel).CurrentItem;
             var idx = (sender as MATSysViewModel).TestItems.IndexOf(currentRow);
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                datagrid.SelectedIndex = idx;
 
-            datagrid.ScrollIntoView(currentRow, null);
-            datagrid.SelectedIndex = idx;
-            
-            
-        }
+                datagrid.UpdateLayout();
 
-        private void datagrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = e.AddedItems[0] as TestItemData;
-            var col = datagrid.Columns.FirstOrDefault(x => x.Header.ToString() == "Result") as DataGridTextColumn;
-            var tb=col.GetCellContent(item) as TextBlock;
-            tb.Foreground = item.ResultBrush;
+                datagrid.ScrollIntoView(currentRow,null);
+
+                datagrid.UpdateLayout();
+
+            });
             
         }
 
@@ -112,6 +94,24 @@ namespace JYAutoTester.Views
             btn_stop.IsEnabled = false;
         }
 
+        private void datagrid_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
+        {
+            var group = e.RowGroupHeader.CollectionViewGroup;
+            var item = group.GroupItems[0] as TestItemData;
+            e.RowGroupHeader.PropertyValue = item.Category;
+        }
+
+        private void logPanel_unchecked(object sender, RoutedEventArgs e)
+        {
+            log_panel.Height = new GridLength(30, GridUnitType.Pixel);
+            tBox_msg.Visibility= Visibility.Collapsed;
+        }
+
+        private void logPanel_checked(object sender, RoutedEventArgs e)
+        {
+            log_panel.Height = new GridLength(130, GridUnitType.Pixel);
+            tBox_msg.Visibility = Visibility.Visible;
+        }
     }
 
 }

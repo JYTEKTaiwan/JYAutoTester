@@ -13,10 +13,14 @@ namespace JYAutoTesterDEMO.modules
         }
 
         [MATSysCommand]
-        public void Moving()
+        public void MovingToLocation()
         {
             Thread.Sleep(50);
-
+        }
+        [MATSysCommand]
+        public void MovingToHome()
+        {
+            Thread.Sleep(50);
         }
     }
 }
