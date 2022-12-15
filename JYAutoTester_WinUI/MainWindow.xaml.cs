@@ -2,24 +2,11 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using JYAutoTester.Views;
-using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Storage.Provider;
-using Windows.UI.ViewManagement;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -51,7 +38,7 @@ namespace JYAutoTester
             //Replace the APP icon
             IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             string sExe = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            System.Drawing.Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(sExe);
+            Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(sExe);
             SendMessage(hWnd, WM_SETICON, ICON_BIG, ico.Handle);
 
             //Resize the APP
@@ -63,7 +50,7 @@ namespace JYAutoTester
             CenterToScreen(hWnd);
 
             contentFrame.Navigate(typeof(WelcomePage));
-            
+
         }
         private void Navigate(NavigationView view, NavigationViewSelectionChangedEventArgs arg)
         {

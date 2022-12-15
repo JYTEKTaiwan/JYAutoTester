@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage.Pickers;
-using Windows.Storage;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml;
-using System.IO;
-using ABI.System;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Drawing;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Text.Json.Nodes;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 
 namespace JYAutoTester.ViewModels
 {
@@ -35,7 +27,7 @@ namespace JYAutoTester.ViewModels
         public EditorViewModel()
         {
             var jObj = JsonObject.Parse(File.ReadAllText("appsettings.json"));
-            var arr=jObj["MATSys"]["Modules"].AsArray();
+            var arr = jObj["MATSys"]["Modules"].AsArray();
             ActiveModules = new ObservableCollection<string>(arr.Select(x => x["Alias"].ToString()));
 
         }
@@ -84,7 +76,7 @@ namespace JYAutoTester.ViewModels
                 FileName = _file.Name;
                 FilePath = _file.Path;
                 _readContent = File.ReadAllText(_file.Path);
-                IsFileOpened= true;
+                IsFileOpened = true;
                 return _readContent;
             }
             else
@@ -96,7 +88,7 @@ namespace JYAutoTester.ViewModels
         }
 
         public string NewFile()
-        {          
+        {
             FileName = "NewDocument";
             FilePath = "";
             _readContent = "[\r\n]";
@@ -106,14 +98,14 @@ namespace JYAutoTester.ViewModels
 
         public void SaveFile(string content)
         {
-            if (_file==null)
+            if (_file == null)
             {
                 // Open a text file.
                 FileSavePicker save = new FileSavePicker()
                 {
                     SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
-                    SuggestedFileName="NewDocument",
-                    
+                    SuggestedFileName = "NewDocument",
+
                 };
                 save.FileTypeChoices.Add("ats file", new string[] { ".ats" });
 
@@ -129,12 +121,12 @@ namespace JYAutoTester.ViewModels
                 var t = save.PickSaveFileAsync().AsTask();
                 t.Wait();
                 _file = t.Result;
-                if (_file!=null)
+                if (_file != null)
                 {
-                    File.WriteAllText(_file.Path, content);                    
+                    File.WriteAllText(_file.Path, content);
                     _file = null;
                 }
-                
+
             }
             else
             {

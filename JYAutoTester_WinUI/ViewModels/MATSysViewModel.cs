@@ -1,11 +1,7 @@
-﻿using CommunityToolkit.WinUI.UI.Controls;
-using JYAutoTester.Models;
+﻿using JYAutoTester.Models;
 using MATSys.Hosting.Scripting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
@@ -13,18 +9,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Permissions;
-using System.ServiceModel.Channels;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Windows.Devices.PointOfService.Provider;
-using Windows.Foundation;
-using Windows.System;
-using Windows.UI.Core;
-using static NetMQ.NetMQSelector;
+using Windows.Storage.Pickers;
 
 namespace JYAutoTester.ViewModels
 {
@@ -38,10 +25,16 @@ namespace JYAutoTester.ViewModels
         private int _fail = 0;
         private string _logText = "";
         private TestItemData _currentItem = null;
-
+        private bool _isCompleted = false;
+        private JsonArray _report = new JsonArray();
         public event PropertyChangedEventHandler PropertyChanged;
         public Microsoft.UI.Dispatching.DispatcherQueue TheDispatcher { get; set; } = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
+        public bool IsComplete
+        {
+            get => _isCompleted;
+            set { _isCompleted = value; OnPropertyChanged(); }
+        }
         public int PassCount
         {
             get { return _pass; }
@@ -72,7 +65,7 @@ namespace JYAutoTester.ViewModels
         public TestItemData CurrentItem
         {
             get { return _currentItem; }
-            set 
+            set
             {
                 _currentItem = value;
                 OnPropertyChanged();
@@ -100,7 +93,11 @@ namespace JYAutoTester.ViewModels
 
             OnPropertyChanged("TestItems");
 
-
+            runner.BeforeScriptStarts += (items) =>
+            {
+                _report = new JsonArray();
+                IsComplete = false;
+            };
             runner.AfterTestItemStops += (_, res) =>
             {
                 var result = JsonSerializer.Deserialize<TestItemResult>(res);
@@ -128,12 +125,48 @@ namespace JYAutoTester.ViewModels
                     rowItem.Result = res.Result.ToString();
                     rowItem.Attributes = res.Attributes;
                     CurrentItem = rowItem;
-                    LogText += $"[{res.Timestamp.ToString("yyyy/MM/dd HH:mm:ss.fff")}]{item.Executer.Value.CommandString.ToJsonString()}\t{res.Result}\t{res.Value}\t{result["Attributes"]?.ToJsonString()}"+Environment.NewLine;
+                    LogText += $"[{res.Timestamp.ToString("yyyy/MM/dd HH:mm:ss.fff")}]{item.Executer.Value.CommandString.ToJsonString()}\t{res.Result}\t{res.Value}\t{result["Attributes"]?.ToJsonString()}" + Environment.NewLine;
                 });
             };
-
+            runner.AfterScriptStops += (report) =>
+            {
+                IsComplete = true;
+                _report = report;
+            };
         }
 
+        public void ExportReport()
+        {
+            FileSavePicker save = new FileSavePicker()
+            {
+                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
+                SuggestedFileName = DateTime.Now.ToString("yyyyMMdd_HHmmss")
+
+            };
+            save.FileTypeChoices.Add("report file", new string[] { ".report" });
+
+
+            var window = (Application.Current as App)?.Window as MainWindow;
+
+            // Get the current window's HWND by passing in the Window object
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+
+            // Associate the HWND with the file picker
+            WinRT.Interop.InitializeWithWindow.Initialize(save, hwnd);
+
+            var t = save.PickSaveFileAsync().AsTask();
+            t.Wait();
+
+            using (var tw = System.IO.File.CreateText(t.Result.Path))
+            {
+                var opt = new JsonSerializerOptions() { WriteIndented = false };
+                foreach (var item in _report)
+                {
+                    tw.WriteLine(item.ToJsonString(opt));
+                }
+                tw.Flush();
+            }
+        }
         public void StartTest(int iteration = 1)
         {
             foreach (var item in _binding)
@@ -165,9 +198,9 @@ namespace JYAutoTester.ViewModels
             });
 
         }
-        private void TestItemParsing(IEnumerable<TestItem> tests, string category,string prefix)
+        private void TestItemParsing(IEnumerable<TestItem> tests, string category, string prefix)
         {
-            int idx=1;
+            int idx = 1;
             foreach (var item in tests)
             {
                 _binding.Add(new TestItemData()
@@ -182,6 +215,15 @@ namespace JYAutoTester.ViewModels
                 idx++;
             }
 
+        }
+    
+        public void OpeningPage()
+        {
+            model.Start();
+        }
+        public void ClosingPage()
+        {
+            model.Stop();
         }
     }
     public class TestItemData : INotifyPropertyChanged
@@ -210,7 +252,7 @@ namespace JYAutoTester.ViewModels
         public string TestItemID
         {
             get { return _itemID; }
-            set 
+            set
             {
                 _itemID = value;
                 OnPropertyChanged();
@@ -256,7 +298,7 @@ namespace JYAutoTester.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public string ExecuterCommand
         {
             get { return _execCmd; }
@@ -327,7 +369,7 @@ namespace JYAutoTester.ViewModels
                 default:
                     ResultBrush = new SolidColorBrush(Colors.Transparent);
                     break;
-            }            
+            }
         }
     }
 

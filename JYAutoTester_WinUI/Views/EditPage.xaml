@@ -41,14 +41,14 @@
 
             <Button x:Name="btn_SaveFile" Click="SaveButton_Click" ToolTipService.ToolTip="Save File"
                     IsEnabled="{x:Bind Path=ViewModel.IsFileOpened}"
-                    x:DefaultBindMode="TwoWay"
+                    x:DefaultBindMode="OneWay"
             RelativePanel.RightOf="btn_FileOpen">
                 <Button.Content>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE792;"/>
                 </Button.Content>
             </Button>
             <TextBlock
-            x:DefaultBindMode="TwoWay"
+            x:DefaultBindMode="OneWay"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             FontSize="20"
             FontWeight="Bold"

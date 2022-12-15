@@ -1,17 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using JYAutoTester.Models;
 using JYAutoTester.Views;
-using NLog.Targets;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using Windows.Web.AtomPub;
-using static NetMQ.NetMQSelector;
 
 namespace JYAutoTester.ViewModels
 {
@@ -32,10 +27,14 @@ namespace JYAutoTester.ViewModels
                 "Runners",
                 "Analyzers"
             });
-
+        private string scriptDirectory = @".\scripts";
         public ObservableCollection<ModuleContext> ModuleInfos { get; set; }
         public ObservableCollection<AssemblieInfo> ExternalReferences { get; set; }
-
+        public string ScriptRootDirectory
+        {
+            get => scriptDirectory;
+            set => SetProperty(ref scriptDirectory, value);
+        }
         public string NLogSetting
         {
             get => _nlog;
@@ -46,6 +45,8 @@ namespace JYAutoTester.ViewModels
             ExternalReferences = new ObservableCollection<AssemblieInfo>(LoadExternalReference());
             ModuleInfos = new ObservableCollection<ModuleContext>(ListModuleInfos());
             NLogSetting = LoadNlogSettingFromFile();
+            ScriptRootDirectory = _model.GetScriptRootDirectory();
+
         }
 
         public void Commit()
@@ -53,7 +54,8 @@ namespace JYAutoTester.ViewModels
             WriteExtRefSection();
             WriteModuleInfo();
             WriteNLogSetting();
-            _model.OverrideFile();
+            _model.UpdateRootDirectory(ScriptRootDirectory);
+            _model.OverwriteFile();
         }
 
         #region External Assemblies related
@@ -194,9 +196,12 @@ namespace JYAutoTester.ViewModels
             else
             {
                 _model.UpdateNLogInfo(JsonObject.Parse(NLogSetting));
-            }            
+            }
 
         }
+        #endregion
+        #region ScriptRootDirectory related
+
         #endregion
     }
 

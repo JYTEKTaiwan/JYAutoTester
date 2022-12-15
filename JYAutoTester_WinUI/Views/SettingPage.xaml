@@ -24,8 +24,9 @@
 
         <ScrollViewer
             Grid.Row="1"
+            HorizontalAlignment="Stretch"
             VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Disabled"            
+            HorizontalScrollBarVisibility="Auto"                 
             >
             <StackPanel Grid.Row="1">
                 <TextBlock 
@@ -33,6 +34,7 @@
                     FontSize="22"
                     FontStyle="Italic"
                     TextWrapping="Wrap"
+                    TextDecorations="Underline"
                     Text="Assemblies Configuration"/>
                 <RichTextBlock                     
                     Padding="48,10,10,0"
@@ -48,13 +50,14 @@
                     <TreeView 
                     Grid.Row="0"                           
                     Background="LightGray"                 
-                    HorizontalAlignment="Stretch"                    
+                    HorizontalAlignment="Stretch"                     
                     ItemsSource="{x:Bind Path=ViewModel.ExternalReferences}">
                         <TreeView.ItemTemplate>
                             <DataTemplate x:DataType="local:AssemblieInfo">
                                 <TreeViewItem 
                                 IsExpanded="True" 
                                 ItemsSource="{x:Bind Files}" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Visible"
                                 Content="{x:Bind Name}"
                                 />
                             </DataTemplate>
@@ -83,8 +86,8 @@
                     </Button>
                 </Grid>
                 
-                <Line X1="36" Y1="20" X2="2000" Y2="20" Stroke="Black" StrokeThickness="2"/>
-                <TextBlock Padding="36,30,0,0" FontSize="22" FontStyle="Italic">Modules Configuration</TextBlock>
+                
+                <TextBlock Padding="36,30,0,0" FontSize="22" TextDecorations="Underline" FontStyle="Italic">Modules Configuration</TextBlock>
                 <RichTextBlock Padding="48,10,0,0">
                     <Paragraph>Edit the Modules information in the configuration file</Paragraph>
                 </RichTextBlock>
@@ -95,39 +98,39 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <controls:DataGrid
-                        Grid.Row="0"                        
-                        HorizontalAlignment="Left"                        
+                        Grid.Row="0"                       
                         x:DefaultBindMode="TwoWay"
-                        AutoGenerateColumns="False"
+                        AutoGenerateColumns="False"                        
                         ItemsSource="{x:Bind Path=ViewModel.ModuleInfos}"
                         SelectionMode="Single"
                         IsReadOnly="True"
                         IsDoubleTapEnabled="True"
                         SelectionChanged="DataGrid_SelectionChanged"
-                        >
-                        <controls:DataGrid.Columns>
-                            <controls:DataGridTextColumn Width="*" Header="Alias" Binding="{Binding Alias}"></controls:DataGridTextColumn>
-                            <controls:DataGridTextColumn Width="*" Header="Module" Binding="{Binding Type}"></controls:DataGridTextColumn>
-                            <controls:DataGridTextColumn Width="*" Header="Transceiver" Binding="{Binding Transceiver.Type}"></controls:DataGridTextColumn>
-                            <controls:DataGridTextColumn Width="*" Header="Notifier" Binding="{Binding Notifier.Type}"></controls:DataGridTextColumn>
-                            <controls:DataGridTextColumn Width="*" Header="Recorder" Binding="{Binding Recorder.Type}"></controls:DataGridTextColumn>
+                        HorizontalAlignment="Stretch"
+                        >                        
+                        <controls:DataGrid.Columns>                            
+                            <controls:DataGridTextColumn Header="Alias" Binding="{Binding Alias}"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Module" Binding="{Binding Type}"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Transceiver" Binding="{Binding Transceiver.Type}"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Notifier" Binding="{Binding Notifier.Type}"></controls:DataGridTextColumn>
+                            <controls:DataGridTextColumn Header="Recorder" Binding="{Binding Recorder.Type}"></controls:DataGridTextColumn>
                         </controls:DataGrid.Columns>
                     </controls:DataGrid>
-                    <RichEditBox x:Name="module_editor" Grid.Row="2" AcceptsReturn="True" IsSpellCheckEnabled="False" KeyUp="RichEditBox_KeyUp"/>
+                    <RichEditBox x:Name="module_editor" Width="400" Grid.Row="2" AcceptsReturn="True" IsSpellCheckEnabled="False" KeyUp="RichEditBox_KeyUp" HorizontalAlignment="Left"/>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="15">
                         <Button x:Name="btn_newModule" Click="btn_newModule_Click">New Module</Button>
                         <Button x:Name="btn_UpdateModuleInfo" Click="mod_Update_Click">Update Setting</Button>
                     </StackPanel>
 
                 </Grid>
-                <Line    X1="36" Y1="20" X2="2000" Y2="20"    Stroke="Black"   StrokeThickness="2"/>
-                <TextBlock Padding="36,30,0,0" FontSize="22" FontStyle="Italic">Script Root Directory</TextBlock>
+                
+                <TextBlock Padding="36,30,0,0" FontSize="22" FontStyle="Italic" TextDecorations="Underline">Script Root Directory</TextBlock>
                 <Grid  Padding="36,30,0,0">
-                    <TextBox Text=".\\scripts" Width="350" HorizontalAlignment="Left"></TextBox>
+                    <TextBox Text="{x:Bind Path=ViewModel.ScriptRootDirectory}" x:DefaultBindMode="TwoWay" Width="400" HorizontalAlignment="Left"></TextBox>
                 </Grid>
                 
-                <Line    X1="36" Y1="20" X2="2000" Y2="20"    Stroke="Black"   StrokeThickness="2"/>
-                <TextBlock Padding="36,30,0,0" FontSize="22" FontStyle="Italic">Log Setting (NLog)</TextBlock>
+                
+                <TextBlock Padding="36,30,0,0" FontSize="22" FontStyle="Italic" TextDecorations="Underline">Log Setting (NLog)</TextBlock>
                 <RichTextBlock Padding="48,10,0,0" >
                     <Paragraph>Edit the content of the trace logging in the configuration file</Paragraph>
                 </RichTextBlock>
@@ -145,8 +148,8 @@
                         <Button Content="Update Setting" Click="nlog_Update"></Button>
                         <Button Content="Load Default" Click="nlog_LoadDefault"></Button>
                     </StackPanel>
-                    
-                    <RichEditBox x:Name="nlog_editor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True" IsSpellCheckEnabled="False" KeyUp="RichEditBox_KeyUp"></RichEditBox>
+
+                    <RichEditBox x:Name="nlog_editor" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" AcceptsReturn="True" IsSpellCheckEnabled="False" KeyUp="RichEditBox_KeyUp" HorizontalAlignment="Stretch"></RichEditBox>
                 </Grid>
 
             </StackPanel>

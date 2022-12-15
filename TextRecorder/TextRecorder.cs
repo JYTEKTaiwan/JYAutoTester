@@ -4,7 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-namespace TextRecorder
+namespace MATSys.Plugins
 {
     public class TextRecorder : IRecorder
     {
@@ -37,7 +37,7 @@ namespace TextRecorder
 
         public void Write(object data)
         {
-            var text = $"[{DateTime.Now}]{JsonSerializer.Serialize(data)}";
+            var text = $"[{DateTime.Now}]{JsonSerializer.Serialize(data)}\r\n";
             File.AppendAllText("log.txt",text);
         }
 

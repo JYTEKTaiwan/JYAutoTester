@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 
 namespace JYAutoTester.Models
 {
@@ -33,17 +30,17 @@ namespace JYAutoTester.Models
       }
     ]
   }";
-        public bool IsReferenceSectionExists 
+        public bool IsReferenceSectionExists
         {
-            get 
+            get
             {
                 return jObj["MATSys"].AsObject().ContainsKey("References");
             }
         }
-        
+
         public AppSettingModel()
         {
-            jObj=JsonNode.Parse(File.ReadAllText("appsettings.json"));
+            jObj = JsonNode.Parse(File.ReadAllText("appsettings.json"));
         }
 
         public string[] ReadAssembliesInfos(string categoryName)
@@ -60,10 +57,10 @@ namespace JYAutoTester.Models
 
         public void UpdateAssembliesInfos(JsonNode node)
         {
-            jObj["MATSys"]["References"]=node;
+            jObj["MATSys"]["References"] = node;
         }
         public IEnumerable<JsonNode> GetModulesInfo()
-        {            
+        {
             foreach (var item in jObj["MATSys"]["Modules"].AsArray())
             {
                 yield return item;
@@ -84,7 +81,7 @@ namespace JYAutoTester.Models
         }
         public void UpdateNLogInfo(JsonNode node)
         {
-            if (node!=null)
+            if (node != null)
             {
                 jObj["NLog"] = node;
             }
@@ -92,19 +89,28 @@ namespace JYAutoTester.Models
             {
                 jObj.AsObject().Remove("NLog");
             }
-            
+
         }
 
-        public void OverrideFile()
+        public void OverwriteFile()
         {
             //backup
             if (File.Exists("appsettings_bak.json"))
             {
                 File.Delete("appsettings_bak.json");
-            }            
+            }
             File.Copy("appsettings.json", "appsettings_bak.json");
 
-            File.WriteAllText("appsettings.json", jObj.ToJsonString(new JsonSerializerOptions() { WriteIndented= true }));
+            File.WriteAllText("appsettings.json", jObj.ToJsonString(new JsonSerializerOptions() { WriteIndented = true }));
+        }
+
+        public string GetScriptRootDirectory()
+        {
+            return jObj["MATSys"]["Runner"]["RootDirectory"].GetValue<string>();
+        }
+        public void UpdateRootDirectory(string path)
+        {
+            jObj["MATSys"]["Runner"]["RootDirectory"] = path;
         }
     }
 }
