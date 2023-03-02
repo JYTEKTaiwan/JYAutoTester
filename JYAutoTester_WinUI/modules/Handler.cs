@@ -16,6 +16,7 @@ namespace JYAutoTesterDEMO.modules
         {
             Thread.Sleep(50);
         }
+
         [MATSysCommand]
         public void MovingToHome()
         {

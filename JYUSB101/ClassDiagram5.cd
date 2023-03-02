@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JYUSB61902.JYUSB61902AITask">
+    <Position X="12" Y="0.5" Width="2.5" />
+    <Members>
+      <Field Name="_adjustedSampleRate" Hidden="true" />
+      <Field Name="_AIDoubleBuffSize" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>hAWqAEpCCKEBBBgCAAUWRUUU4QgIsCCwIEEgREDIlBg=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AIChannel">
+    <Position X="4.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAASIAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AITrigger">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEBAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAEA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AIDigitalTrigger">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AIAnalogTrigger">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgCAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.JYUSB61902AOTask">
+    <Position X="3.75" Y="9" Width="2.75" />
+    <Members>
+      <Field Name="_adjustedUpdateRate" Hidden="true" />
+      <Field Name="_AODoubleBuffSize" Hidden="true" />
+      <Field Name="_AOSampleInterval" Hidden="true" />
+      <Field Name="_AOScanInterval" Hidden="true" />
+      <Field Name="_aoStarted" Hidden="true" />
+      <Field Name="_AOWriteBuffer" Hidden="true" />
+      <Field Name="_aoWritebufIdx" Hidden="true" />
+      <Field Name="_bufferLenSetByUser" Hidden="true" />
+      <Field Name="_bufLenInSamples" Hidden="true" />
+      <Field Name="_devHandle" Hidden="true" />
+      <Field Name="_enableAODbfMode" Hidden="true" />
+      <Field Name="_enableAORetrigger" Hidden="true" />
+      <Field Name="_enableHardwareWrapping" Hidden="true" />
+      <Field Name="_isUnderflow" Hidden="true" />
+      <Field Name="_localBuffer" Hidden="true" />
+      <Field Name="_samplesWrittenPerChannel" Hidden="true" />
+      <Field Name="_startedLock" Hidden="true" />
+      <Field Name="_taskDone" Hidden="true" />
+      <Field Name="_thdWriteData" Hidden="true" />
+      <Field Name="_threadException" Hidden="true" />
+      <Field Name="_waitLock" Hidden="true" />
+      <Field Name="_waitUntilDoneEvent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AQUoEAADAKEgADoAQBEChwQA4AIgEgCAIMkgjEAIEBI=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AOChannel">
+    <Position X="8.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASIAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.StatusLock">
+    <Position X="12.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAQAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AOTrigger">
+    <Position X="6.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAAAAAIAAAAAQAAAAAAAEA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AODigitalTrigger">
+    <Position X="10.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.JYUSB61902CITask">
+    <Position X="13" Y="15" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAgAAAAAAKCAAAAAAAAAAAAAAQAAAABAIAEAIABAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.Counter">
+    <Position X="6.75" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAQAAAAAAAAAAAQAAABAIAAAAAIAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.Measure">
+    <Position X="10.75" Y="15" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.JYUSB61902COTask">
+    <Position X="6.5" Y="23.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAQAKAAAAAAAAAAAAAAAAgAAAKAIAEAJABAAgA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.COClock">
+    <Position X="8.75" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.COGate">
+    <Position X="4.5" Y="21.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.DutyCycleFrequency">
+    <Position X="1.75" Y="22" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.Time">
+    <Position X="1.75" Y="24" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.Tick">
+    <Position X="8.75" Y="24" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.COPulse">
+    <Position X="11.5" Y="21.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAIAQAAAAAAwQA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.JYUSB61902DITask">
+    <Position X="0.5" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIgCAABAAAAAAAUAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902DITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.DIChannel">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Source\Task\JYUSB61902DITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.JYUSB61902DOTask">
+    <Position X="0.5" Y="17" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIADAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAABEAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902DOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.DOChannel">
+    <Position X="0.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Source\Task\JYUSB61902DOTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JYUSB61902.AIRecord">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAABAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="JYUSB61902.AITriggerType">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIClockEdge">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AITriggerGate">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAEAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIDigitalTriggerEdge">
+    <Position X="4.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIAnalogTriggerCondition">
+    <Position X="1.5" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIMode">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAACAAAAAAAAAAAAAAAAABQA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AITerminal">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIClockSource">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIAnalogTriggerSource">
+    <Position X="1.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAD4AQAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AIDigitalTriggerSource">
+    <Position X="7.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AOClockEdge">
+    <Position X="12.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AODigitalTriggerEdge">
+    <Position X="12.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AODigitalTriggerSource">
+    <Position X="9.5" Y="13" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AOMode">
+    <Position X="6.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAEAAAAAAAAAAGAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AOClockSource">
+    <Position X="8.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.AOTriggerType">
+    <Position X="10.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AOTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CountDirection">
+    <Position X="11.25" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAI=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CIClockSource">
+    <Position X="9" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CIGateSource">
+    <Position X="11.25" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CIPolarity">
+    <Position X="9" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CIClockEdge">
+    <Position X="9" Y="17.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.CIMode">
+    <Position X="8.75" Y="18.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAQAAgA=</HashCode>
+      <FileName>Source\Task\JYUSB61902CITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COSignalLevel">
+    <Position X="2" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COPolarity">
+    <Position X="4.25" Y="26.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COMode">
+    <Position X="11.5" Y="24.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQIQAAgAAAQAAAAAQAAAACAAAAAgAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COClockSource">
+    <Position X="4.5" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COGateSource">
+    <Position X="4.5" Y="23.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COSignalEdge">
+    <Position X="8.75" Y="26" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.COPulseType">
+    <Position X="7" Y="22" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902COTask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.FileFormat">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="JYUSB61902.RecordMode">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Task\JYUSB61902AITask.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

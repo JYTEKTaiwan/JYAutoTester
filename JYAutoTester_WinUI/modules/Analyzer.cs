@@ -6,7 +6,7 @@ namespace JYAutoTesterDEMO
     internal static class Analyzer
     {
         public static bool SmallerThan(this AnalyzingData data, double thredshold)
-        {
+        {            
             return JsonSerializer.Deserialize<double>(data.Value) < thredshold;
         }
 
@@ -15,6 +15,7 @@ namespace JYAutoTesterDEMO
             var v = JsonSerializer.Deserialize<double>(data.Value);
             return v > low && v < high;
         }
+
     }
 
 

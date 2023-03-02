@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\JYTW\\source\\repos\\JYTEKTaiwan\\JYAutoTester\\ConsoleDEMO\\bin\\Debug\\net472\\ConsoleDEMO.exe",
+      "workingDirectory": "C:\\Users\\JYTW\\source\\repos\\JYTEKTaiwan\\JYAutoTester\\ConsoleDEMO\\bin\\Debug\\net472"
+    }
+  }
+}

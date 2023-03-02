@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "C:/Users/JYTW/source/repos/JYTEKTaiwan/JYAutoTester/USB101Test/TestLib.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "C:/Users/JYTW/source/repos/JYTEKTaiwan/JYAutoTester/USB101Test/TestLib.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "C:/Users/JYTW/source/repos/JYTEKTaiwan/JYAutoTester/USB101Test/TestLib.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

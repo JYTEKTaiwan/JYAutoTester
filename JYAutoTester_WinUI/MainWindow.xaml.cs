@@ -44,7 +44,7 @@ namespace JYAutoTester
             //Resize the APP
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
-            appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = 768, Height = 960 });
+            appWindow.Resize(new Windows.Graphics.SizeInt32 { Width = 960, Height = 960 });
 
             //Move to center
             CenterToScreen(hWnd);

@@ -1,0 +1,23 @@
+﻿[
+  {
+    "Tester": { "AO_DCOutput": [ 1 ] },
+    "Between": [ 0.99, 1.01 ]
+  },
+  {
+    "Tester": { "AO_DCOutput": [ 2.5 ] },
+    "Between": [ 2, 2.1 ]
+  },
+  {
+    "Tester": { "AO_DCOutput": [ 4 ] }
+  },
+  {
+    "Tester": { "DIO_Check": [ true, false ] },
+    "IsTrue": [],
+    "Retry": 3
+  },
+  {
+    "Tester": { "AI_Float": [] },
+    "SmallerThan": [ 0.005 ],
+    "Repeat": 15
+  }
+]

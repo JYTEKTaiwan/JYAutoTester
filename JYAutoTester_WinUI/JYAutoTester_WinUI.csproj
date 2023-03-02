@@ -5,7 +5,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>JYAutoTester</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-	  <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+	  <SatelliteResourceLanguages>en-us</SatelliteResourceLanguages>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
@@ -13,6 +13,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
 	  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	  <ApplicationIcon>JYTek.ico</ApplicationIcon>
+	  <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Dialogs\FileSavingDialog.xaml" />
@@ -38,8 +39,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
-    <PackageReference Include="MATSys" Version="1.5.3" />
-    <PackageReference Include="MATSys.Plugins.CSVRecorder" Version="1.0.2" />
+    <PackageReference Include="MATSys" Version="1.6.4" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.220902.1-preview1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
@@ -55,10 +55,16 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TextRecorder\MATSys.Plugins.TextRecorder.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\null.ats">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="scripts\main2.ats">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Page Update="Views\WelcomePage.xaml">

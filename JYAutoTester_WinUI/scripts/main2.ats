@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Executer": { "Tester": { "AO_DCOutput": [ 1 ] } },
+    "Analyzer": { "Between": [ 0.99, 1.01 ] }
+  },
+  {
+    "Executer": { "Tester": { "AO_DCOutput": [ 2.5 ] } },
+    "Analyzer": { "Between": [ 2, 2.1 ] }
+  },
+  {
+    "Executer": { "Tester": { "DIO_Check": [ true, false ] } },
+    "Analyzer": { "IsTrue": [] }
+  }
+]
