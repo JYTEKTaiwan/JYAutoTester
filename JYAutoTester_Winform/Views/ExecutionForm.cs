@@ -13,6 +13,7 @@ namespace JYAutoTester_Winform.Views
     public partial class ExecutionForm : DockContent
     {
         private readonly ViewModels.ExecutionViewModel viewModel;
+        public static bool IsOpened { get; private set; }
         public ExecutionForm()
         {
             InitializeComponent();
@@ -91,6 +92,21 @@ namespace JYAutoTester_Winform.Views
         private void toolStripButton_export_Click(object sender, EventArgs e)
         {
             viewModel.Export();
+        }
+
+        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExecutionForm_Shown(object sender, EventArgs e)
+        {
+            IsOpened = true;
+        }
+
+        private void ExecutionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            IsOpened = false;
         }
     }
 }

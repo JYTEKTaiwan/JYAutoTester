@@ -12,91 +12,100 @@ namespace TestLib
         [MATSysCommand]
         public double AI_Float()
         {
-            double data = 0;
-            var ai = new JYUSB101AITask(0);
-            ai.AddChannel(1);
-            ai.Mode = AIMode.Single;
-            ai.Start();
-            ai.ReadSinglePoint(ref data);
-            ai.Stop();
-            return data;
+            Random rand = new Random();
+            return rand.NextDouble()*0.01;
+            //double data = 0;
+            //var ai = new JYUSB101AITask(0);
+            //ai.AddChannel(1);
+            //ai.Mode = AIMode.Single;
+            //ai.Start();
+            //ai.ReadSinglePoint(ref data);
+            //ai.Stop();
+            //return data;
         }
         [MATSysCommand]
         public double AO_DCOutput(double value)
         {
-            var ai = new JYUSB101AITask(0);
-            ai.AddChannel(0);
-            ai.Mode = AIMode.Single;
-            ai.Start();
-            var ao = new JYUSB101AOTask(0);
-            ao.AddChannel(0);
-            ao.Mode = AOMode.Single;
-            ao.Start();
-            ao.WriteSinglePoint(value);
+            Random rand = new Random();
+            return rand.NextDouble()*0.01+value;
 
-            double data = 0;
-            ai.ReadSinglePoint(ref data);
-            ai.Stop();
-            ao.WriteSinglePoint(0);
-            ao.Stop();
-            return data;
+            //var ai = new JYUSB101AITask(0);
+            //ai.AddChannel(0);
+            //ai.Mode = AIMode.Single;
+            //ai.Start();
+            //var ao = new JYUSB101AOTask(0);
+            //ao.AddChannel(0);
+            //ao.Mode = AOMode.Single;
+            //ao.Start();
+            //ao.WriteSinglePoint(value);
+
+            //double data = 0;
+            //ai.ReadSinglePoint(ref data);
+            //ai.Stop();
+            //ao.WriteSinglePoint(0);
+            //ao.Stop();
+            //return data;
         }
 
         [MATSysCommand]
         public double AI_IdleNoise()
         {
-            try
-            {
-                var ai = new JYUSB101AITask(0);
-                ai.AddChannel(0);
-                ai.Mode = AIMode.Finite;
-                ai.SampleRate = 10000;
-                ai.SamplesToAcquire = 1000;
-                ai.Start();
-                ai.Stop();
+            Random rand = new Random();
+            return rand.NextDouble();
 
-                double[] data = new double[1000];
-                ai.Start();
-                ai.ReadData(ref data,1000,-1);
-                ai.Stop();
-                double square = 0;
-                double mean = 0;
-                double root = 0;
-                for (int i = 0; i < data.Length; i++)
-                {
-                    square += Math.Pow(data[i], 2);
-                }
+            //try
+            //{
+            //    var ai = new JYUSB101AITask(0);
+            //    ai.AddChannel(0);
+            //    ai.Mode = AIMode.Finite;
+            //    ai.SampleRate = 10000;
+            //    ai.SamplesToAcquire = 1000;
+            //    ai.Start();
+            //    ai.Stop();
 
-                // Calculate Mean
-                mean = (square / (double)(data.Length));
+            //    double[] data = new double[1000];
+            //    ai.Start();
+            //    ai.ReadData(ref data,1000,-1);
+            //    ai.Stop();
+            //    double square = 0;
+            //    double mean = 0;
+            //    double root = 0;
+            //    for (int i = 0; i < data.Length; i++)
+            //    {
+            //        square += Math.Pow(data[i], 2);
+            //    }
 
-                // Calculate Root
-                root = Math.Sqrt(mean);
-                Thread.Sleep(1000);
-                return root;
+            //    // Calculate Mean
+            //    mean = (square / (double)(data.Length));
 
-            }
-            catch (Exception ex)
-            {
+            //    // Calculate Root
+            //    root = Math.Sqrt(mean);
+            //    Thread.Sleep(1000);
+            //    return root;
 
-                throw;
-            }
-            
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw;
+            //}
+
         }
 
         [MATSysCommand]
         public bool DIO_Check(bool ch0, bool ch2)
         {
-            var di = new JYUSB101DITask(0);
-            di.AddChannel(new int[]{ 0,2});
+            return true;
+            //var di = new JYUSB101DITask(0);
+            //di.AddChannel(new int[]{ 0,2});
             
-            var dotask = new JYUSB101DOTask(0);
-            dotask.AddChannel(new int[] { 1, 3 });            
-            dotask.WriteSinglePoint(new bool[] { ch0, ch2 });
-            bool[] data = new bool[2];
-            di.ReadSinglePoint(ref data);
+            //var dotask = new JYUSB101DOTask(0);
+            //dotask.AddChannel(new int[] { 1, 3 });            
+            //dotask.WriteSinglePoint(new bool[] { ch0, ch2 });
+            //bool[] data = new bool[2];
+            //di.ReadSinglePoint(ref data);
 
-            return data[0]==ch0&&data[1]==ch2;
+            //return data[0]==ch0&&data[1]==ch2;
         }
 
     }

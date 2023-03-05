@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JYAutoTester_Winform.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,7 +33,7 @@ namespace JYAutoTester_Winform
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {            
-            form.Close();
+            
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -42,10 +43,18 @@ namespace JYAutoTester_Winform
 
         private void executeToolStripButton_Click(object sender, EventArgs e)
         {
-            
-            form = new Views.ExecutionForm();
-            form.Show(dockPanel1, DockState.Document);
+            if (!ExecutionForm.IsOpened)
+            {
+                form = new Views.ExecutionForm();
+                form.Show(dockPanel1, DockState.Document);
+            }
 
+        }
+
+        private void reportToolStripButton_Click(object sender, EventArgs e)
+        {
+            DockContent f = new Views.ReportForm();
+            f.Show(dockPanel1, DockState.Document);
         }
     }
 }

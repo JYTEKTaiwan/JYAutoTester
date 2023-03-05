@@ -106,8 +106,10 @@
             // 
             // bindingNavigator1
             // 
+            this.bindingNavigator1.AddNewItem = null;
             this.tableLayoutPanel1.SetColumnSpan(this.bindingNavigator1, 3);
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,6 +137,7 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(1333, 34);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            this.bindingNavigator1.RefreshItems += new System.EventHandler(this.bindingNavigator1_RefreshItems);
             // 
             // bindingNavigatorCountItem
             // 
@@ -253,6 +256,8 @@
             this.Name = "ExecutionForm";
             this.Text = "ExecutionForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExecutionForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExecutionForm_FormClosed);
+            this.Shown += new System.EventHandler(this.ExecutionForm_Shown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

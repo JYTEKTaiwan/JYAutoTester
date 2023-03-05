@@ -143,6 +143,7 @@
             this.reportToolStripButton.Size = new System.Drawing.Size(45, 44);
             this.reportToolStripButton.Text = "Export Report";
             this.reportToolStripButton.ToolTipText = "Report Viewer";
+            this.reportToolStripButton.Click += new System.EventHandler(this.reportToolStripButton_Click);
             // 
             // envToolStripButton
             // 
@@ -181,6 +182,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JYAutoTester v1.0.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

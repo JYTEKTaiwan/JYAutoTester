@@ -18,7 +18,7 @@ namespace JYAutoTester_Winform.ViewModels
     internal class ExecutionViewModel
     {
         private JsonArray result;
-        private readonly AutoTestModel model;
+        private readonly ExecutionModel model;
         private List<TestItem> testItems = new List<TestItem>();
         public List<TestItemToDisplay> TestSequence { get; set; } = new List<TestItemToDisplay>();
         public event EventHandler<CurrentItemChangedEventArg> CurrentItemChanged;
@@ -28,7 +28,7 @@ namespace JYAutoTester_Winform.ViewModels
         public event EventHandler ScriptExecutionDone;
         public ExecutionViewModel() 
         {
-            model = new AutoTestModel();
+            model = new ExecutionModel();
             model.GetRunner().BeforeTestItemStarts += ExecutionViewModel_BeforeTestItemStarts;
             model.GetRunner().AfterSubTestItemComplete += ExecutionViewModel_AfterSubTestItemComplete;
             model.GetRunner().AfterScriptStops += ExecutionViewModel_AfterScriptStops;

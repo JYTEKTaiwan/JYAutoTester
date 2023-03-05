@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MATSys" Version="1.6.4" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="MATSys">
       <HintPath>..\..\MATSys\bin\Debug\net6.0\MATSys.dll</HintPath>
     </Reference>
